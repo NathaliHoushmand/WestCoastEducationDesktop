@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:WestCoastEducationDesktop.ViewModels"
+             xmlns:models="using:WestCoastEducationDesktop.Models"
+             x:Class="WestCoastEducationDesktop.Views.TeachersView"
+             x:DataType="vm:TeachersViewModel">
+
+    <Grid ColumnDefinitions="2*,1*" Margin="8">
+
+        <Border Grid.Column="0" Background="{DynamicResource AppSurfaceBrush}" CornerRadius="6" Padding="12" Margin="0,0,8,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+                    <TextBlock Text="Teachers" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" VerticalAlignment="Center" />
+                    <Button Content="Refresh" Command="{Binding LoadCommand}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Bottom" Text="{Binding StatusMessage}" Foreground="{DynamicResource AppMutedTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap" />
+
+                <ListBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:Teacher">
+                            <TextBlock Text="{Binding DisplayText}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="{DynamicResource AppSurfaceBrush}" CornerRadius="6" Padding="12">
+            <ScrollViewer>
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Add a teacher" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" />
+
+                    <TextBlock Text="First name" />
+                    <TextBox Text="{Binding NewFirstName}" />
+
+                    <TextBlock Text="Last name" />
+                    <TextBox Text="{Binding NewLastName}" />
+
+                    <TextBlock Text="Phone" />
+                    <TextBox Text="{Binding NewPhone}" />
+
+                    <TextBlock Text="Personal number" />
+                    <TextBox Text="{Binding NewPersonalNumber}" />
+
+                    <TextBlock Text="Address" />
+                    <TextBox Text="{Binding NewAddress}" />
+
+                    <TextBlock Text="Postal code" />
+                    <TextBox Text="{Binding NewPostalCode}" />
+
+                    <TextBlock Text="City" />
+                    <TextBox Text="{Binding NewCity}" />
+
+                    <TextBlock Text="Competency area" />
+                    <TextBox Text="{Binding NewCompetencyArea}" />
+
+                    <Button Content="Add teacher" Command="{Binding AddCommand}" Background="{DynamicResource AppPrimaryBrush}" Margin="0,8,0,0" HorizontalAlignment="Stretch" />
+
+                    <Separator Margin="0,12,0,12" />
+
+                    <TextBlock Text="Competency area (selected teacher)" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" />
+                    <TextBox Text="{Binding EditCompetencyArea}" />
+                    <Button Content="Save competency area" Command="{Binding SaveCompetencyAreaCommand}" HorizontalAlignment="Stretch" />
+
+                    <Separator Margin="0,12,0,12" />
+
+                    <TextBlock Text="Edit full teacher record" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" />
+
+                    <TextBlock Text="First name" />
+                    <TextBox Text="{Binding EditFirstName}" />
+
+                    <TextBlock Text="Last name" />
+                    <TextBox Text="{Binding EditLastName}" />
+
+                    <TextBlock Text="Phone" />
+                    <TextBox Text="{Binding EditPhone}" />
+
+                    <TextBlock Text="Personal number" />
+                    <TextBox Text="{Binding EditPersonalNumber}" />
+
+                    <TextBlock Text="Address" />
+                    <TextBox Text="{Binding EditAddress}" />
+
+                    <TextBlock Text="Postal code" />
+                    <TextBox Text="{Binding EditPostalCode}" />
+
+                    <TextBlock Text="City" />
+                    <TextBox Text="{Binding EditCity}" />
+
+                    <Button Content="Save teacher" Command="{Binding UpdateTeacherCommand}" HorizontalAlignment="Stretch" Margin="0,8,0,0" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,46 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="WestCoastEducationDesktop.App"
+             RequestedThemeVariant="Default">
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+    <!--
+        Design and coloring handled as dynamic resources (G-requirement):
+        every brush below is wired to a DynamicResource color per theme
+        dictionary, so swapping Default/Dark at runtime re-colors the
+        whole app without any code-behind changes.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <Color x:Key="AppBackgroundColor">#F4F6F9</Color>
+                    <Color x:Key="AppSurfaceColor">#FFFFFF</Color>
+                    <Color x:Key="AppPrimaryColor">#2F6F4E</Color>
+                    <Color x:Key="AppPrimaryTextColor">#1B2430</Color>
+                    <Color x:Key="AppMutedTextColor">#5B6472</Color>
+                    <Color x:Key="AppDangerColor">#C0392B</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="AppBackgroundColor">#1B1F24</Color>
+                    <Color x:Key="AppSurfaceColor">#262B32</Color>
+                    <Color x:Key="AppPrimaryColor">#4F9A74</Color>
+                    <Color x:Key="AppPrimaryTextColor">#F1F3F5</Color>
+                    <Color x:Key="AppMutedTextColor">#9AA4B2</Color>
+                    <Color x:Key="AppDangerColor">#E57368</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <SolidColorBrush x:Key="AppBackgroundBrush" Color="{DynamicResource AppBackgroundColor}" />
+            <SolidColorBrush x:Key="AppSurfaceBrush" Color="{DynamicResource AppSurfaceColor}" />
+            <SolidColorBrush x:Key="AppPrimaryBrush" Color="{DynamicResource AppPrimaryColor}" />
+            <SolidColorBrush x:Key="AppPrimaryTextBrush" Color="{DynamicResource AppPrimaryTextColor}" />
+            <SolidColorBrush x:Key="AppMutedTextBrush" Color="{DynamicResource AppMutedTextColor}" />
+            <SolidColorBrush x:Key="AppDangerBrush" Color="{DynamicResource AppDangerColor}" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

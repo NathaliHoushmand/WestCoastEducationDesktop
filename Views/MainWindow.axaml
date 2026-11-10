@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:WestCoastEducationDesktop.ViewModels"
+        xmlns:views="using:WestCoastEducationDesktop.Views"
+        x:Class="WestCoastEducationDesktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="WestCoast Education — Admin"
+        Width="1100" Height="720"
+        Background="{DynamicResource AppBackgroundBrush}">
+
+    <TabControl Margin="12">
+        <TabItem Header="Courses">
+            <views:CoursesView DataContext="{Binding Courses}" />
+        </TabItem>
+        <TabItem Header="Students">
+            <views:StudentsView DataContext="{Binding Students}" />
+        </TabItem>
+        <TabItem Header="Teachers">
+            <views:TeachersView DataContext="{Binding Teachers}" />
+        </TabItem>
+    </TabControl>
+
+</Window>

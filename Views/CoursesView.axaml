@@ -1,0 +1,103 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:WestCoastEducationDesktop.ViewModels"
+             xmlns:models="using:WestCoastEducationDesktop.Models"
+             x:Class="WestCoastEducationDesktop.Views.CoursesView"
+             x:DataType="vm:CoursesViewModel">
+
+    <Grid ColumnDefinitions="2*,1*" Margin="8">
+
+        <Border Grid.Column="0" Background="{DynamicResource AppSurfaceBrush}" CornerRadius="6" Padding="12" Margin="0,0,8,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+                    <TextBlock Text="Courses" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" VerticalAlignment="Center" />
+                    <Button Content="Refresh" Command="{Binding LoadCommand}" />
+                    <Button Content="Delete selected" Command="{Binding DeleteCommand}" Background="{DynamicResource AppDangerBrush}" />
+                </StackPanel>
+
+                <TextBlock DockPanel.Dock="Bottom" Text="{Binding StatusMessage}" Foreground="{DynamicResource AppMutedTextBrush}" Margin="0,8,0,0" TextWrapping="Wrap" />
+
+                <ListBox ItemsSource="{Binding Courses}" SelectedItem="{Binding SelectedCourse}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:Course">
+                            <TextBlock Text="{Binding DisplayText}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="{DynamicResource AppSurfaceBrush}" CornerRadius="6" Padding="12">
+            <ScrollViewer>
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Add a course" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" />
+
+                    <TextBlock Text="Course number" />
+                    <TextBox Text="{Binding NewCourseNumber}" />
+
+                    <TextBlock Text="Title" />
+                    <TextBox Text="{Binding NewTitle}" />
+
+                    <TextBlock Text="Length (weeks)" />
+                    <NumericUpDown Value="{Binding NewLengthInWeeks}" Minimum="1" Maximum="52" />
+
+                    <TextBlock Text="Start date" />
+                    <DatePicker SelectedDate="{Binding NewStartDate}" />
+
+                    <TextBlock Text="End date" />
+                    <DatePicker SelectedDate="{Binding NewEndDate}" />
+
+                    <CheckBox Content="Classroom course" IsChecked="{Binding NewIsClassroom}" />
+
+                    <TextBlock Text="Location / link" />
+                    <TextBox Text="{Binding NewLocation}" />
+
+                    <TextBlock Text="Teacher" />
+                    <ComboBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding NewTeacher}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Teacher">
+                                <TextBlock Text="{Binding FullName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <Button Content="Add course" Command="{Binding AddCommand}" Background="{DynamicResource AppPrimaryBrush}" Margin="0,8,0,0" HorizontalAlignment="Stretch" />
+
+                    <Separator Margin="0,12,0,12" />
+
+                    <TextBlock Text="Edit selected course" FontWeight="Bold" Foreground="{DynamicResource AppPrimaryTextBrush}" />
+
+                    <TextBlock Text="Title" />
+                    <TextBox Text="{Binding EditTitle}" />
+
+                    <TextBlock Text="Length (weeks)" />
+                    <NumericUpDown Value="{Binding EditLengthInWeeks}" Minimum="1" Maximum="52" />
+
+                    <TextBlock Text="Start date" />
+                    <DatePicker SelectedDate="{Binding EditStartDate}" />
+
+                    <TextBlock Text="End date" />
+                    <DatePicker SelectedDate="{Binding EditEndDate}" />
+
+                    <CheckBox Content="Classroom course" IsChecked="{Binding EditIsClassroom}" />
+
+                    <TextBlock Text="Location / link" />
+                    <TextBox Text="{Binding EditLocation}" />
+
+                    <TextBlock Text="Teacher" />
+                    <ComboBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding EditTeacher}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Teacher">
+                                <TextBlock Text="{Binding FullName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <Button Content="Save changes" Command="{Binding UpdateCommand}" HorizontalAlignment="Stretch" Margin="0,8,0,0" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+
+</UserControl>
